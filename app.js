@@ -63,7 +63,7 @@ app.use("/blogs", blogRoute);
 app.use("/blogs/:id/comments", commentsRoute);
 app.use(indexRoute);
 
-app.listen(8000, function () {
+app.listen(process.env.PORT || 8080, function () {
     console.log("server started at 8000");
 });
 
