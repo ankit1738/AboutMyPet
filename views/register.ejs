@@ -1,0 +1,28 @@
+<% include ./partials/header.ejs %>
+
+<div class="ui main text container segment">
+	<div class="ui huge header ">Register</div>
+	<form class="ui form" action="/register" method="POST">
+		<label>Name: </label>
+			<div class="two fields">
+		    	<div class="field">
+		        	<input type="text" name="fname" placeholder="First Name">
+		    	</div>
+		    	<div class="field">
+		        	<input type="text" name="lname" placeholder="Last Name">
+	    		</div>
+	    	</div>
+		<div class="field">
+			<label>Username</label>
+			<input type="text" placeholder="username" name="username" autocomplete="off">
+		</div>
+		<div class="field">
+			<label>Password</label>
+			<input type="password" name="password" autocomplete="off">
+		</div>
+		<input class=" ui violet basic button big" type="submit">
+	</form>
+
+</div>
+
+<% include ./partials/footer.ejs %>

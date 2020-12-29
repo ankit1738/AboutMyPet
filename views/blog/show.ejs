@@ -1,0 +1,68 @@
+<% include ../partials/header %>
+
+<div class="ui main text container segment">
+	<div class="ui huge header "><%= blog.title %></div>
+	<div class="ui top attached segment">
+		<div class="item ">
+			<img class="ui centered rounded image thumb" src="<%= blog.image %>" >
+		</div>
+		<div class="content">
+			<p><%= blog.created.toDateString() %></p>			
+		</div>
+		<div class="content">
+			<p><b>Author: </b> <%= blog.author.username %></p>			
+		</div>
+		<div class="description">
+			<p><%- blog.body %></p> 
+		</div>
+		<% if(currentUser && blog.author.id.equals(currentUser._id)) { %>
+		<a href="/blogs/<%= blog._id %>/edit" class="ui basic button orange">Edit</a>
+
+		<form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE"  method="POST">
+			<button class="ui red basic button" >Delete</button>
+		</form>
+		<% } %>
+	</div>
+		<div class="ui container">			
+			<form class="ui form" id="commentForm" data-blog="<%= blog._id %>" >
+				<div class="field">
+					<label>Add a comment</label>
+					<input type="text" name="comment" id="comment" placeholder="Your Comment...">
+				</div>
+				<button class="ui violet basic button" id="commentSubmit">Submit</button>
+			</form>						
+		</div>
+		<h3>All Comments</h3>
+		<div class="ui container" id="commentsDiv">
+			<div class="ui comments">
+			<% blog.comments.forEach(function(comment){ %>
+			  <div class="comment">
+			    <div class="content">
+			      <a class="author"><%= comment.author.username %></a>
+			      <div class="metadata">
+			        <div class="date">2 days ago</div>
+			      </div>
+			      <div class="text">
+			        <%= comment.text %>
+			      </div>
+			    </div>
+			    <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+								<a class="ui mini green basic button" 
+								   href="/blogs/<%= blog._id%>/comments/<%= comment._id %>/edit">Edit
+								</a>
+								<form style="display: inline;" class="delete_form" action="/blogs/<%= blog._id%>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+									<button class="ui mini red basic button">Delete</button>
+									
+								</form>
+							<% } %>	 
+			  </div>
+			  <% }); %>
+			</div>
+		</div>
+	
+	
+	
+
+</div>
+
+<% include ../partials/footer %>
