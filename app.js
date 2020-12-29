@@ -1,4 +1,4 @@
-var express = require("express"),
+const express = require("express"),
     app = express(),
     mongoose = require("mongoose"),
     bodyParser = require("body-parser"),
@@ -12,9 +12,14 @@ var express = require("express"),
     flash = require("connect-flash"),
     Comment = require("./models/comments.js");
 
-var blogRoute = require("./routes/blog.js");
-var commentsRoute = require("./routes/comments.js");
-var indexRoute = require("./routes/index.js");
+const blogRoute = require("./routes/blog.js");
+const commentsRoute = require("./routes/comments.js");
+const indexRoute = require("./routes/index.js");
+const redis = require("redis");
+const session = require("express-session");
+
+let RedisStore = require("connect-redis")(session);
+let redisClient = redis.createClient();
 
 //APP CONFIG
 mongoose.connect(
@@ -42,7 +47,7 @@ app.use(
         secret: process.env.PASSPORT_SECRET,
         resave: false,
         saveUninitialized: false,
-        store: new MongoStore(),
+        store: new RedisStore({ client: redisClient }),
     })
 );
 app.use(passport.initialize());
