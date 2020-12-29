@@ -16,7 +16,6 @@ const blogRoute = require("./routes/blog.js");
 const commentsRoute = require("./routes/comments.js");
 const indexRoute = require("./routes/index.js");
 const redis = require("redis");
-const session = require("express-session");
 
 let RedisStore = require("connect-redis")(session);
 let redisClient = redis.createClient();
