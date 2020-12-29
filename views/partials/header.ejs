@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blog App - Ankit Kumar</title>
+</head>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.css">
+<link rel="stylesheet" type="text/css" href="/stylesheet/app.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/scripts/main.js"></script>
+<body>
+	<div class="ui fixed inverted menu">
+		<div class="ui container">
+			<div class="header item"><i class="code icon"></i>Blog Site</div>		
+			<a href="/" class="item">Home</a>
+			<a href="/blogs/new" class="item">New Blog</a>
+		</div>
+		<div class="right menu">
+			<% if(currentUser){%>
+				<a class="ui item">Welcome  <%= currentUser.fname %></a>
+				<a href="/logout" class="ui item">Logout</a>
+			<% }else{ %>
+		    	<a href="/login" class="ui item">Login</a>
+		    <% } %>
+		    
+		    <a href="/register" class="ui item">Register</a>
+		</div>
+		
+	</div>
+<div class="ui container" style="margin-top: 80px">
+	<% if(error && error.length > 0) {%>
+		<div class="ui red message">
+			<%= error %>
+		</div>
+	<% } %>
+	<% if(success && success.length > 0) {%>
+		<div class="ui green message">
+			<%= success %>
+		</div>
+	<% } %>
+</div>

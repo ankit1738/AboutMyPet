@@ -1,0 +1,19 @@
+<% include ./partials/header.ejs %>
+
+<div class="ui main text container segment">
+	<div class="ui huge header ">Login</div>
+	<form class="ui form" action="/login" method="POST">
+		<div class="field">
+			<label>Username</label>
+			<input type="text" placeholder="example@xyz.com" name="username" >
+		</div>
+		<div class="field">
+			<label>Password</label>
+			<input type="password" name="password" placeholder="password">
+		</div>
+		<input class=" ui violet basic button big" type="submit">
+	</form> 
+
+</div>
+
+<% include ./partials/footer.ejs %>
