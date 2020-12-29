@@ -17,9 +17,8 @@ var commentsRoute = require("./routes/comments.js");
 var indexRoute = require("./routes/index.js");
 
 //APP CONFIG
-const pass = "Ankit@1738";
 mongoose.connect(
-    `mongodb+srv://ankit1738:${pass}@cluster0.qj0wm.mongodb.net/BlogApp?retryWrites=true&w=majority`,
+    `mongodb+srv://ankit1738:${process.env.PASS}@cluster0.qj0wm.mongodb.net/BlogApp?retryWrites=true&w=majority`,
     { useNewUrlParser: true, dbName: "BlogApp", useUnifiedTopology: true }
 );
 // mongoose.connect("mongodb://localhost/blog_app",{ useMongoClient: true });
@@ -40,7 +39,7 @@ app.use(express.static(__dirname + "/public"));
 
 app.use(
     require("express-session")({
-        secret: "winter is coming",
+        secret: process.env.PASSPORT_SECRET,
         resave: false,
         saveUninitialized: false,
     })
