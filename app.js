@@ -42,6 +42,7 @@ app.use(
         secret: process.env.PASSPORT_SECRET,
         resave: false,
         saveUninitialized: false,
+        store: new MongoStore(),
     })
 );
 app.use(passport.initialize());
